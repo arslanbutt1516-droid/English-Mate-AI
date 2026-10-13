@@ -14,7 +14,8 @@ import {
   TrendingUp,
   Settings,
   GraduationCap,
-  User
+  User,
+  X,
 } from 'lucide-react'
 import ThemeToggle from '@/components/theme/ThemeToggle'
 
@@ -33,24 +34,39 @@ const navItems = [
   { name: 'Profile & Settings', href: '/profile', icon: User, badge: '' },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({
+  onClose,
+  isMobileDrawer = false,
+}: {
+  onClose?: () => void
+  isMobileDrawer?: boolean
+}) {
   const pathname = usePathname()
 
   return (
     <aside
-      style={{
-        width: '260px',
-        background: 'var(--surface)',
-        borderRight: '1px solid var(--border)',
-        height: '100vh',
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        zIndex: 40,
-      }}
-      className="hidden md:flex"
+      style={
+        isMobileDrawer
+          ? {
+              width: '100%',
+              height: '100%',
+              background: 'var(--surface)',
+              display: 'flex',
+              flexDirection: 'column',
+            }
+          : {
+              width: '260px',
+              background: 'var(--surface)',
+              borderRight: '1px solid var(--border)',
+              height: '100vh',
+              position: 'fixed',
+              left: 0,
+              top: 0,
+              flexDirection: 'column',
+              zIndex: 40,
+            }
+      }
+      className={isMobileDrawer ? 'flex flex-col h-full w-full' : 'desktop-sidebar'}
     >
       {/* Brand header */}
       <div
@@ -58,12 +74,17 @@ export default function Sidebar() {
           height: '70px',
           display: 'flex',
           alignItems: 'center',
+          justifyContent: 'space-between',
           gap: '12px',
-          padding: '0 24px',
+          padding: '0 20px',
           borderBottom: '1px solid var(--border)',
         }}
       >
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+        <Link
+          href="/"
+          onClick={onClose}
+          style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}
+        >
           <div
             style={{
               width: '38px',
@@ -90,6 +111,27 @@ export default function Sidebar() {
             </div>
           </div>
         </Link>
+
+        {isMobileDrawer && (
+          <button
+            onClick={onClose}
+            style={{
+              background: 'var(--surface-subtle)',
+              border: '1px solid var(--border)',
+              borderRadius: '8px',
+              width: '34px',
+              height: '34px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--foreground-muted)',
+              cursor: 'pointer',
+            }}
+            aria-label="Close navigation"
+          >
+            <X size={18} />
+          </button>
+        )}
       </div>
 
       {/* Nav List */}
@@ -124,6 +166,7 @@ export default function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onClose}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -182,6 +225,7 @@ export default function Sidebar() {
       >
         <Link
           href="/profile"
+          onClick={onClose}
           style={{
             display: 'flex',
             alignItems: 'center',

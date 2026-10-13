@@ -562,6 +562,97 @@ a:hover { color: var(--color-primary-hover); }
 }
 
 /* =====================================================
+   Animations
+   ===================================================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Toast notification — responsive positioning */
+.toast-notification {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+  max-width: calc(100vw - 48px);
+}
+
+@media (max-width: 768px) {
+  .toast-notification {
+    top: auto;
+    bottom: 80px; /* above mobile nav bar */
+    right: 16px;
+    left: 16px;
+    max-width: calc(100vw - 32px);
+    font-size: 13px;
+    padding: 10px 16px;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* =====================================================
+   App Shell & Navigation Responsive Rules
+   ===================================================== */
+.desktop-sidebar {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .desktop-sidebar {
+    display: flex !important;
+  }
+}
+
+.mobile-bottom-nav {
+  display: flex !important;
+}
+
+@media (min-width: 768px) {
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+}
+
+.app-main-content {
+  padding-left: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .app-main-content {
+    padding-left: 260px !important;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* =====================================================
    Responsive Helpers
    ===================================================== */
 @media (max-width: 768px) {

@@ -31,12 +31,11 @@ export default function MobileNav() {
         height: '64px',
         background: 'var(--surface)',
         borderTop: '1px solid var(--border)',
-        display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
         zIndex: 50,
       }}
-      className="md:hidden"
+      className="mobile-bottom-nav"
     >
       {mobileNavItems.map((item) => {
         const Icon = item.icon

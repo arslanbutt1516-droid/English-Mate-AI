@@ -57,24 +57,7 @@ export default function GrammarPage() {
     <AppShell>
       {/* Toast */}
       {toastMessage && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '80px',
-            right: '24px',
-            background: 'linear-gradient(135deg, #10b981, #059669)',
-            color: 'white',
-            padding: '12px 20px',
-            borderRadius: '12px',
-            boxShadow: '0 8px 24px rgba(16, 185, 129, 0.3)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontWeight: '700',
-            fontSize: '14px',
-            zIndex: 100,
-          }}
-        >
+        <div className="toast-notification">
           <Sparkles size={18} />
           <span>{toastMessage}</span>
         </div>
@@ -118,8 +101,8 @@ export default function GrammarPage() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '28px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+          gap: '24px',
           alignItems: 'start',
         }}
       >
@@ -149,6 +132,9 @@ export default function GrammarPage() {
                     setSelectedLesson(lesson)
                     setSelectedAnswers({})
                     setSubmittedQuiz(false)
+                    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+                      document.getElementById('active-lesson-section')?.scrollIntoView({ behavior: 'smooth' })
+                    }
                   }}
                   style={{
                     display: 'flex',
@@ -208,11 +194,12 @@ export default function GrammarPage() {
 
         {/* Right Column: Active Lesson Content */}
         <div
+          id="active-lesson-section"
           style={{
             background: 'var(--card-bg)',
             borderRadius: '16px',
             border: '1px solid var(--card-border)',
-            padding: '28px',
+            padding: '24px 20px',
             boxShadow: 'var(--card-shadow)',
           }}
         >

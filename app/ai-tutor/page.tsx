@@ -48,6 +48,7 @@ export default function AITutorPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [activeMode, setActiveMode] = useState<'free' | 'interview' | 'grammar'>('free')
   const [activePersona, setActivePersona] = useState<'mentor' | 'oxford' | 'silicon'>('mentor')
+  const [errorToast, setErrorToast] = useState<string | null>(null)
 
   const chatEndRef = useRef<HTMLDivElement>(null)
 
@@ -81,8 +82,9 @@ export default function AITutorPage() {
         }),
       })
 
-      if (res.ok) {
-        const data = await res.json()
+      const data = await res.json()
+
+      if (data.reply) {
         const aiMsg: Message = {
           id: (Date.now() + 1).toString(),
           sender: 'ai',
@@ -93,9 +95,27 @@ export default function AITutorPage() {
         }
         setMessages((prev) => [...prev, aiMsg])
         addXP(15)
+      } else {
+        // Show a friendly inline error message in the chat
+        const errMsg: Message = {
+          id: (Date.now() + 1).toString(),
+          sender: 'ai',
+          text: 'I could not process that request right now. Please try rephrasing your question, or ask me a grammar rule, sentence correction, or interview practice question!',
+          urduExplanation: 'ابھی جواب نہیں مل سکا۔ براہ کرم دوبارہ کوشش کریں یا کوئی گرامر سوال پوچھیں۔',
+          timestamp: 'Just now',
+        }
+        setMessages((prev) => [...prev, errMsg])
       }
     } catch (err) {
       console.error(err)
+      const errMsg: Message = {
+        id: (Date.now() + 1).toString(),
+        sender: 'ai',
+        text: 'Network connection issue. Please check your internet connection and try again.',
+        urduExplanation: 'انٹرنیٹ کنیکشن کا مسئلہ ہے۔ براہ کرم دوبارہ کوشش کریں۔',
+        timestamp: 'Just now',
+      }
+      setMessages((prev) => [...prev, errMsg])
     } finally {
       setIsLoading(false)
     }
@@ -223,7 +243,7 @@ export default function AITutorPage() {
           border: '1px solid var(--card-border)',
           display: 'flex',
           flexDirection: 'column',
-          height: '620px',
+          height: 'clamp(480px, 70vh, 680px)',
           boxShadow: 'var(--card-shadow)',
           overflow: 'hidden',
         }}

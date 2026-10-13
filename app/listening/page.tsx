@@ -137,24 +137,7 @@ export default function ListeningPage() {
     <AppShell>
       {/* Toast */}
       {toastMessage && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '80px',
-            right: '24px',
-            background: 'linear-gradient(135deg, #10b981, #059669)',
-            color: 'white',
-            padding: '12px 20px',
-            borderRadius: '12px',
-            boxShadow: '0 8px 24px rgba(16, 185, 129, 0.3)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontWeight: '700',
-            fontSize: '14px',
-            zIndex: 100,
-          }}
-        >
+        <div className="toast-notification">
           <Sparkles size={18} />
           <span>{toastMessage}</span>
         </div>

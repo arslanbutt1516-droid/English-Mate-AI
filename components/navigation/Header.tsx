@@ -1,13 +1,17 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Flame, Award, Globe, Volume2, Sparkles, User, Search, BookOpen, X, Sliders, Settings, GraduationCap } from 'lucide-react'
+import { Flame, Award, Globe, Volume2, Sparkles, User, Search, BookOpen, X, Sliders, Settings, GraduationCap, Menu } from 'lucide-react'
 import { getUserProgress, playTTS } from '@/lib/storage'
 import ThemeToggle from '@/components/theme/ThemeToggle'
 import VoiceSettingsModal from '@/components/shared/VoiceSettingsModal'
 import { VOCABULARY_LIST } from '@/lib/data/vocabulary'
 
-export default function Header() {
+export default function Header({
+  onOpenMobileDrawer,
+}: {
+  onOpenMobileDrawer?: () => void
+}) {
   const [xp, setXp] = useState(340)
   const [streak, setStreak] = useState(4)
   const [urduEnabled, setUrduEnabled] = useState(true)
@@ -41,18 +45,38 @@ export default function Header() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '0 24px',
+          padding: '0 16px',
           position: 'sticky',
           top: 0,
           zIndex: 30,
           backdropFilter: 'blur(12px)',
+          maxWidth: '100vw',
         }}
       >
         {/* Left title / breadcrumb */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div className="md:hidden">
-            <Link href="/" style={{ textDecoration: 'none', fontWeight: '800', color: 'var(--color-primary)', fontSize: '18px' }}>
-              EnglishMate AI
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="md:hidden" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <button
+              onClick={onOpenMobileDrawer}
+              style={{
+                background: 'var(--surface-subtle)',
+                border: '1px solid var(--border)',
+                borderRadius: '8px',
+                width: '36px',
+                height: '36px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'var(--foreground)',
+                cursor: 'pointer',
+              }}
+              title="Open Navigation Menu"
+              aria-label="Open Navigation Menu"
+            >
+              <Menu size={20} />
+            </button>
+            <Link href="/" style={{ textDecoration: 'none', fontWeight: '800', color: 'var(--color-primary)', fontSize: '17px' }}>
+              EnglishMate
             </Link>
           </div>
           <div className="hidden md:flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">

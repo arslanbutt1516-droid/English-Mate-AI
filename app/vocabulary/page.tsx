@@ -85,25 +85,7 @@ export default function VocabularyPage() {
     <AppShell>
       {/* Toast Notification */}
       {xpRewardToast && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '80px',
-            right: '24px',
-            background: 'linear-gradient(135deg, #10b981, #059669)',
-            color: 'white',
-            padding: '12px 20px',
-            borderRadius: '12px',
-            boxShadow: '0 8px 24px rgba(16, 185, 129, 0.3)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontWeight: '700',
-            fontSize: '14px',
-            zIndex: 100,
-            animation: 'fadeIn 0.3s ease',
-          }}
-        >
+        <div className="toast-notification">
           <Sparkles size={18} />
           <span>{xpRewardToast}</span>
         </div>
@@ -277,7 +259,7 @@ export default function VocabularyPage() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))',
           gap: '24px',
         }}
       >
