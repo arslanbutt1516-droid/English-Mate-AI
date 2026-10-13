@@ -3,18 +3,17 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
-  BookOpen,
+  Award,
+  Sparkles,
   GraduationCap,
-  BotMessageSquare,
-  Mic,
   User,
 } from 'lucide-react'
 
 const mobileNavItems = [
   { name: 'Home', href: '/dashboard', icon: LayoutDashboard },
-  { name: 'Vocab', href: '/vocabulary', icon: BookOpen },
-  { name: 'Speak', href: '/speaking', icon: Mic },
-  { name: 'AI Tutor', href: '/ai-tutor', icon: BotMessageSquare },
+  { name: 'IELTS', href: '/ielts', icon: Award },
+  { name: 'Daily 10', href: '/daily-words', icon: Sparkles },
+  { name: '3D Class', href: '/classroom', icon: GraduationCap },
   { name: 'Profile', href: '/profile', icon: User },
 ]
 

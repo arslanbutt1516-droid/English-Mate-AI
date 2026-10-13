@@ -16,12 +16,16 @@ import {
   GraduationCap,
   User,
   X,
+  Award,
 } from 'lucide-react'
 import ThemeToggle from '@/components/theme/ThemeToggle'
 
 const navItems = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, badge: '' },
-  { name: 'Daily Vocabulary', href: '/vocabulary', icon: BookOpen, badge: 'New' },
+  { name: 'IELTS Preparation', href: '/ielts', icon: Award, badge: 'IELTS' },
+  { name: 'Daily 10 Words', href: '/daily-words', icon: Sparkles, badge: 'Daily' },
+  { name: '3D AI Classroom', href: '/classroom', icon: GraduationCap, badge: '3D' },
+  { name: 'Daily Vocabulary', href: '/vocabulary', icon: BookOpen, badge: '' },
   { name: 'Grammar Academy', href: '/grammar', icon: GraduationCap, badge: '' },
   { name: 'Reading Studio', href: '/reading', icon: FileText, badge: '' },
   { name: 'Speaking Lab', href: '/speaking', icon: Mic, badge: 'Voice' },

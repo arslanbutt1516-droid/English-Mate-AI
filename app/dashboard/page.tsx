@@ -470,10 +470,95 @@ export default function DashboardPage() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
           gap: '16px',
         }}
       >
+        {/* Featured Card 1: IELTS Preparation Center */}
+        <Link
+          href="/ielts"
+          style={{
+            background: 'linear-gradient(135deg, rgba(30, 27, 75, 0.95), rgba(49, 46, 129, 0.95))',
+            border: '1px solid rgba(129, 140, 248, 0.3)',
+            borderRadius: '16px',
+            padding: '22px',
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '16px',
+            boxShadow: 'var(--card-shadow)',
+            color: 'white',
+          }}
+          className="hover:scale-[1.02] transition-transform"
+        >
+          <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#67e8f9' }}>
+            <Award size={26} />
+          </div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '16px', fontWeight: '800', color: 'white' }}>IELTS Center</span>
+              <span style={{ fontSize: '10px', fontWeight: '800', background: '#38bdf8', color: '#0f172a', padding: '1px 6px', borderRadius: '4px' }}>NEW</span>
+            </div>
+            <div style={{ fontSize: '12px', color: '#cbd5e1' }}>Academic & General • Mock Tests</div>
+          </div>
+        </Link>
+
+        {/* Featured Card 2: Daily 10 Words */}
+        <Link
+          href="/daily-words"
+          style={{
+            background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.15))',
+            border: '1px solid rgba(16, 185, 129, 0.4)',
+            borderRadius: '16px',
+            padding: '22px',
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '16px',
+            boxShadow: 'var(--card-shadow)',
+          }}
+          className="hover:scale-[1.02] transition-transform"
+        >
+          <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: '#ecfdf5', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10b981' }}>
+            <Sparkles size={26} />
+          </div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '16px', fontWeight: '800', color: 'var(--foreground)' }}>Daily 10 Words</span>
+              <span style={{ fontSize: '10px', fontWeight: '800', background: '#10b981', color: 'white', padding: '1px 6px', borderRadius: '4px' }}>MIDNIGHT</span>
+            </div>
+            <div style={{ fontSize: '12px', color: 'var(--foreground-muted)' }}>10 Words/Day • Urdu & Pronunciation</div>
+          </div>
+        </Link>
+
+        {/* Featured Card 3: 3D AI Virtual Classroom */}
+        <Link
+          href="/classroom"
+          style={{
+            background: 'linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(79, 70, 229, 0.15))',
+            border: '1px solid rgba(147, 51, 234, 0.4)',
+            borderRadius: '16px',
+            padding: '22px',
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '16px',
+            boxShadow: 'var(--card-shadow)',
+          }}
+          className="hover:scale-[1.02] transition-transform"
+        >
+          <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: '#f5f3ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9333ea' }}>
+            <GraduationCap size={26} />
+          </div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '16px', fontWeight: '800', color: 'var(--foreground)' }}>3D AI Classroom</span>
+              <span style={{ fontSize: '10px', fontWeight: '800', background: '#9333ea', color: 'white', padding: '1px 6px', borderRadius: '4px' }}>3D AVATAR</span>
+            </div>
+            <div style={{ fontSize: '12px', color: 'var(--foreground-muted)' }}>Virtual Teacher • Interactive Whiteboard</div>
+          </div>
+        </Link>
+
         <Link
           href="/vocabulary"
           style={{
