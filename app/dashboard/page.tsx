@@ -95,7 +95,7 @@ export default function DashboardPage() {
 
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <Link
-              href="/speaking"
+              href="/ai-speaking-coach"
               style={{
                 background: 'white',
                 color: '#1d4ed8',
@@ -111,7 +111,7 @@ export default function DashboardPage() {
               }}
             >
               <Mic size={16} />
-              <span>Resume Speaking Drill</span>
+              <span>Speak with AI Coach</span>
             </Link>
 
             <Link
@@ -474,6 +474,34 @@ export default function DashboardPage() {
           gap: '16px',
         }}
       >
+        {/* Featured Card 0: AI Speaking Coach */}
+        <Link
+          href="/ai-speaking-coach"
+          style={{
+            background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(99, 102, 241, 0.25))',
+            border: '1px solid rgba(99, 102, 241, 0.45)',
+            borderRadius: '16px',
+            padding: '22px',
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '16px',
+            boxShadow: 'var(--card-shadow)',
+          }}
+          className="hover:scale-[1.02] transition-transform"
+        >
+          <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'var(--primary-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-primary)' }}>
+            <Mic size={26} />
+          </div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '16px', fontWeight: '800', color: 'var(--foreground)' }}>AI Speaking Coach</span>
+              <span style={{ fontSize: '10px', fontWeight: '800', background: 'var(--color-primary)', color: 'white', padding: '1px 6px', borderRadius: '4px' }}>LIVE VOICE</span>
+            </div>
+            <div style={{ fontSize: '12px', color: 'var(--foreground-muted)' }}>Real-Time Conversation • Audio Feedback</div>
+          </div>
+        </Link>
+
         {/* Featured Card 1: IELTS Preparation Center */}
         <Link
           href="/ielts"

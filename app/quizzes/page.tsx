@@ -170,6 +170,7 @@ export default function QuizzesPage() {
               return (
                 <button
                   key={optIdx}
+                  type="button"
                   onClick={() => handleSelect(optIdx)}
                   style={{
                     padding: '16px 20px',
@@ -185,6 +186,9 @@ export default function QuizzesPage() {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     transition: 'all 0.15s ease',
+                    touchAction: 'manipulation',
+                    WebkitTapHighlightColor: 'transparent',
+                    minHeight: '48px',
                   }}
                 >
                   <span>{opt}</span>

@@ -329,6 +329,7 @@ export default function ReadingPage() {
                         return (
                           <button
                             key={optIdx}
+                            type="button"
                             disabled={quizSubmitted}
                             onClick={() => handleSelectQuizAnswer(qIdx, optIdx)}
                             style={{
@@ -340,6 +341,9 @@ export default function ReadingPage() {
                               fontWeight: '600',
                               textAlign: 'left',
                               cursor: quizSubmitted ? 'default' : 'pointer',
+                              touchAction: 'manipulation',
+                              WebkitTapHighlightColor: 'transparent',
+                              minHeight: '44px',
                             }}
                           >
                             {opt}

@@ -171,3 +171,46 @@ export const IELTSAttempt: Model<IIELTSAttempt> =
   mongoose.models.IELTSAttempt ||
   mongoose.model<IIELTSAttempt>('IELTSAttempt', IELTSAttemptSchema)
 
+/* =====================================================
+   AI Speaking Coach Session Summary
+   ===================================================== */
+export interface ISpeakingSession extends Document {
+  userId: string
+  sessionId: string
+  topic: string
+  level: string
+  durationSeconds: number
+  turnCount: number
+  corrections: Array<{
+    original: string
+    improved: string
+    explanation: string
+    explanationUrdu?: string
+  }>
+  summary: string
+  recurringGrammarTopics?: string[]
+  practiceRubricBand?: number
+  createdAt: Date
+}
+
+const SpeakingSessionSchema = new Schema<ISpeakingSession>(
+  {
+    userId: { type: String, required: true, index: true },
+    sessionId: { type: String, required: true, unique: true },
+    topic: { type: String, required: true },
+    level: { type: String, default: 'B1' },
+    durationSeconds: { type: Number, default: 0 },
+    turnCount: { type: Number, default: 0 },
+    corrections: { type: Array as any, default: [] },
+    summary: { type: String, default: '' },
+    recurringGrammarTopics: { type: [String], default: [] },
+    practiceRubricBand: { type: Number },
+  },
+  { timestamps: true }
+)
+
+export const SpeakingSession: Model<ISpeakingSession> =
+  mongoose.models.SpeakingSession ||
+  mongoose.model<ISpeakingSession>('SpeakingSession', SpeakingSessionSchema)
+
+

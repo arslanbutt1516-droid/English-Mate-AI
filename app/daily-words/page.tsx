@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import AppShell from '@/components/navigation/AppShell'
 import { DailyWord } from '@/lib/types'
 import { playTTS, toggleSavedWord, addXP, getUserProgress } from '@/lib/storage'
@@ -150,16 +150,27 @@ export default function Daily10WordsPage() {
     setTimeout(() => setToastMessage(null), 2500)
   }
 
-  // Quiz logic
+  // Quiz logic - stably memoize options so re-renders do not shuffle the options while answering
   const quizWord = words[quizIndex]
-  const quizOptions = quizWord
-    ? [
-        quizWord.meaning,
-        'To walk quickly in an irregular direction without a clear target.',
-        'A formal document provided during government registration.',
-        'To reduce temperature below standard freezing limit.',
-      ].sort(() => 0.5 - Math.random())
-    : []
+  const quizOptions = useMemo(() => {
+    if (!quizWord) return []
+    const rawOptions = [
+      quizWord.meaning,
+      'To walk quickly in an irregular direction without a clear target.',
+      'A formal document provided during government registration.',
+      'To reduce temperature below standard freezing limit.',
+    ]
+    // Deterministic shuffle seeded by word id/text and index so options appear shuffled but STAY in fixed order during the question
+    const seed = (quizWord.id || quizWord.word || '').split('').reduce((acc, c) => acc + c.charCodeAt(0), quizIndex * 13)
+    const shuffled = [...rawOptions]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(((seed * (i + 1) * 37 + i * 19) % 1000) / 1000 * (i + 1))
+      const temp = shuffled[i]
+      shuffled[i] = shuffled[j]
+      shuffled[j] = temp
+    }
+    return shuffled
+  }, [quizWord?.id, quizWord?.meaning, quizIndex])
 
   const handleQuizAnswer = (optionIdx: number) => {
     if (quizSubmitted) return
@@ -786,6 +797,7 @@ export default function Daily10WordsPage() {
                   return (
                     <button
                       key={idx}
+                      type="button"
                       onClick={() => handleQuizAnswer(idx)}
                       style={{
                         padding: '14px 16px',
@@ -798,6 +810,11 @@ export default function Daily10WordsPage() {
                         textAlign: 'left',
                         cursor: quizSubmitted ? 'default' : 'pointer',
                         transition: 'all 0.15s ease',
+                        touchAction: 'manipulation',
+                        WebkitTapHighlightColor: 'transparent',
+                        minHeight: '48px',
+                        display: 'flex',
+                        alignItems: 'center',
                       }}
                     >
                       {opt}

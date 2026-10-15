@@ -294,3 +294,58 @@ export interface ClassroomLesson {
   whiteboard: WhiteboardContent
   visualKeyword?: 'apple' | 'walk' | 'clock' | 'workplace' | 'timeline' | 'dialogue' | 'books'
 }
+
+/* =====================================================
+   MODULE 4: REAL-TIME AI SPEAKING COACH TYPES
+   ===================================================== */
+export type SpeakingCoachTopic =
+  | 'daily'
+  | 'workplace'
+  | 'interview'
+  | 'ielts'
+  | 'friend'
+  | 'grammar'
+
+export type SpeakingCoachSessionState =
+  | 'idle'
+  | 'listening'
+  | 'processing'
+  | 'speaking'
+  | 'interrupted'
+  | 'paused'
+  | 'error'
+  | 'ended'
+
+export interface SpeakingCorrection {
+  original: string
+  improved: string
+  explanation: string
+  explanationUrdu?: string
+}
+
+export interface SpeakingCoachMessage {
+  id: string
+  role: 'user' | 'assistant'
+  text: string
+  corrections?: SpeakingCorrection[]
+  urduExplanation?: string
+  followUpQuestion?: string
+  timestamp: string
+  isInterim?: boolean
+}
+
+export interface SpeakingCoachSessionSummary {
+  id: string
+  sessionId: string
+  userId: string
+  topic: SpeakingCoachTopic
+  level: CEFRLevel
+  durationSeconds: number
+  turnCount: number
+  corrections: SpeakingCorrection[]
+  summary: string
+  recurringGrammarTopics?: string[]
+  practiceRubricBand?: number
+  createdAt: string
+}
+

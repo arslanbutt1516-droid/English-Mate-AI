@@ -487,6 +487,7 @@ export default function ListeningPage() {
                     return (
                       <button
                         key={optIdx}
+                        type="button"
                         disabled={quizSubmitted}
                         onClick={() => setSelectedQuestions({ ...selectedQuestions, [qIdx]: optIdx })}
                         style={{
@@ -498,6 +499,9 @@ export default function ListeningPage() {
                           fontWeight: '600',
                           textAlign: 'left',
                           cursor: quizSubmitted ? 'default' : 'pointer',
+                          touchAction: 'manipulation',
+                          WebkitTapHighlightColor: 'transparent',
+                          minHeight: '44px',
                         }}
                       >
                         {opt}

@@ -389,6 +389,7 @@ export default function GrammarPage() {
                         return (
                           <button
                             key={optIdx}
+                            type="button"
                             disabled={submittedQuiz}
                             onClick={() => handleSelectAnswer(qIdx, optIdx)}
                             style={{
@@ -400,6 +401,9 @@ export default function GrammarPage() {
                               fontWeight: '600',
                               textAlign: 'left',
                               cursor: submittedQuiz ? 'default' : 'pointer',
+                              touchAction: 'manipulation',
+                              WebkitTapHighlightColor: 'transparent',
+                              minHeight: '44px',
                             }}
                           >
                             {opt}
